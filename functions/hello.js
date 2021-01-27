@@ -1,5 +1,8 @@
-import { google } from 'googleapis'
-import { config as dotenvConfig } from 'dotenv'
+const { google } = require("googleapis");
+
+const { config: dotenvConfig } = require("dotenv");
+
+require(c)
 
 dotenvConfig()
 
