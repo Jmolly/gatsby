@@ -2,8 +2,6 @@ const { google } = require("googleapis");
 
 const { config: dotenvConfig } = require("dotenv");
 
-require(c)
-
 dotenvConfig()
 
 const getClient = ({ scopes }) => {
