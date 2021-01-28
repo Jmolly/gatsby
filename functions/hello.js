@@ -11,11 +11,7 @@ const getClient = ({ scopes }) => {
   console.log(Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT, 'base64'), 'PROCESS123151221');
 
   return google.auth.getClient({
-    credentials: JSON.parse(
-      Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT, 'base64').toString(
-        'ascii'
-      )
-    ),
+    credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
     scopes: scopes,
   })
 }
