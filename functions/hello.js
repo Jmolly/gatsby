@@ -5,7 +5,7 @@ const { config: dotenvConfig } = require("dotenv");
 dotenvConfig()
 
 const getClient = ({ scopes }) => {
-  console.log(scopes, 'getclietn');
+  console.log(process.env, 'PROCESS');
 
   return google.auth.getClient({
     credentials: JSON.parse(
@@ -52,8 +52,6 @@ const addToCol = async (range, emailAddress) => {
 }
 
 exports.handler = async function(event, context, callback) {
-  console.log(event);
-
   try {
     // const emailToSignup = JSON.parse(event.body).email;
     const emailToSignup = 'bakhar.yulia@gmail.com';
