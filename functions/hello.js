@@ -51,6 +51,8 @@ const addToCol = async (range, emailAddress) => {
 }
 
 exports.handler = async function(event, context, callback) {
+  console.log(event);
+
   try {
     const emailToSignup = JSON.parse(event.body).email
     const sheetsRes = await addToCol('Local!F2', emailToSignup) // don't resolve though. Not going to fix if failure.
