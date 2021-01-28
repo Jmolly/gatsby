@@ -55,7 +55,7 @@ exports.handler = async function(event, context, callback) {
     // const emailToSignup = JSON.parse(event.body).email;
     const emailToSignup = 'bakhar.yulia@gmail.com';
 
-    const sheetsRes = await addToCol('Local!F2', emailToSignup) // don't resolve though. Not going to fix if failure.
+    const sheetsRes = await addToCol('Test!F2', emailToSignup) // don't resolve though. Not going to fix if failure.
     return {
       statusCode: sheetsRes.status,
       body: JSON.stringify(sheetsRes),
