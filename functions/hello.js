@@ -28,7 +28,8 @@ const authorizeSheets = async () => {
 }
 
 const addToCol = async (range, emailAddress) => {
-  const sheets = await authorizeSheets()
+  const sheets = await authorizeSheets();
+
   return new Promise((resolve, reject) => {
     sheets.spreadsheets.values.append(
       {
@@ -54,7 +55,9 @@ exports.handler = async function(event, context, callback) {
   console.log(event);
 
   try {
-    const emailToSignup = JSON.parse(event.body).email
+    // const emailToSignup = JSON.parse(event.body).email;
+    const emailToSignup = 'bakhar.yulia@gmail.com';
+
     const sheetsRes = await addToCol('Local!F2', emailToSignup) // don't resolve though. Not going to fix if failure.
     return {
       statusCode: sheetsRes.status,
