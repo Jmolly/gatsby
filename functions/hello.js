@@ -85,11 +85,26 @@ exports.handler = async function (event, context, callback) {
 
     console.log(sheetsParams, 'sheetsParams');
 
-    // const sheetsRes = sheetsParams.map(
-    //   async (sheetsParam, i) => await addToCol(`orders!F${2 + i}`, sheetsParam),
-    // );
+    const sheetsRes = sheetsParams.map(async (sheetsParam, i) => {
+      try {
+        await addToCol(`orders!F${2 + i}`, sheetsParam);
+      } catch (error) {
+        console.log(error);
+      }
+    });
 
-    await s(`orders!F${2 + 1}`, sheetsParams[0]);
+    try {
+      await addToCol(`orders!F${2 + 1}`, sheetsParams[0]);
+    } catch (error) {
+      console.log(error);
+    }
+
+    try {
+      await addToCol(`orders!F5`, sheetsParams[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log('HEREE');
     // don't resolve though. Not going to fix if failure.
     return {
       statusCode: sheetsRes.status,
