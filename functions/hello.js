@@ -30,10 +30,10 @@ const authorizeSheets = async () => {
   });
 };
 
-const addToCol = async (range, params) => {
+const addToCol = async (range, { date, email, skuCode, quantity }) => {
   const sheets = await authorizeSheets();
 
-  console.log(params, 'params');
+  console.log(date, email, skuCode, quantity, 'params');
   return new Promise((resolve, reject) => {
     sheets.spreadsheets.values.append(
       {
@@ -41,9 +41,7 @@ const addToCol = async (range, params) => {
         range,
         valueInputOption: 'USER_ENTERED',
         resource: {
-          values: [
-            [params.date, params.email, params.skuCode, params.quantity],
-          ],
+          values: [[date, email, skuCode, quantity]],
         },
       },
       (err, response) => {
