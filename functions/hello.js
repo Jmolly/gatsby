@@ -66,9 +66,8 @@
 //   }
 // }
 
-const fetch = require("node-fetch");
-const { google } = require("googleapis");
-const { config: dotenvConfig } = require("dotenv");
+const { google } = require('googleapis');
+const { config: dotenvConfig } = require('dotenv');
 
 dotenvConfig();
 
@@ -85,10 +84,10 @@ const getClient = ({ scopes }) => {
 
 async function authorize() {
   const client = await getClient({
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
   return google.sheets({
-    version: "v4",
+    version: 'v4',
     auth: client,
   });
 }
@@ -96,23 +95,26 @@ async function authorize() {
 async function addOrderToSpreadsheet(params, range) {
   const sheets = await authorize();
   const request = {
-    spreadsheetId: GOOGLE_SHEET_ID,
-    range: `${GOOGLE_SHEET_LIST_NAME}!A${range}`,
-    valueInputOption: "USER_ENTERED",
+    spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
+    range: `${'orders'}!A${range}`,
+    valueInputOption: 'USER_ENTERED',
     resource: {
       values: [[params.date, params.email, params.skuCode, params.quantity]],
     },
   };
 
   console.log(
-    { request, values: [[params.date, params.email, params.skuCode, params.quantity]] },
-    "request"
+    {
+      request,
+      values: [[params.date, params.email, params.skuCode, params.quantity]],
+    },
+    'request',
   );
 
   try {
-    console.log("here");
+    console.log('here');
     const response = await sheets.spreadsheets.values.update(request);
-    console.log(response, "response");
+    console.log(response, 'response');
   } catch (err) {
     console.error(err);
   }
@@ -123,8 +125,8 @@ async function getLength() {
 
   const length = await sheets.spreadsheets.values
     .get({
-      spreadsheetId: GOOGLE_SHEET_ID,
-      range: `${GOOGLE_SHEET_LIST_NAME}!A:A`,
+      spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
+      range: `${'orders'}!A:A`,
     })
     .then((res) => res.data.values.length);
 
@@ -134,15 +136,18 @@ async function getLength() {
 exports.handler = async function (event, context, callback) {
   try {
     const params = {
-      email: "test@gmail.com",
-      date: "date",
-      lineItems: [{
-        skuCode: "sku1",
-        quantity: 1,
-      }, {
-        skuCode: 'sku2',
-        quantity: 2,
-      }],
+      email: 'test@gmail.com',
+      date: 'date',
+      lineItems: [
+        {
+          skuCode: 'sku1',
+          quantity: 1,
+        },
+        {
+          skuCode: 'sku2',
+          quantity: 2,
+        },
+      ],
     };
 
     const sheetsParams = params.lineItems.map((lineItem) => ({
@@ -155,14 +160,14 @@ exports.handler = async function (event, context, callback) {
     const range = await getLength();
 
     const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
-      addOrderToSpreadsheet(sheetsParam, range + i)
+      addOrderToSpreadsheet(sheetsParam, range + i),
     );
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Success" }),
+      body: JSON.stringify({ message: 'Success' }),
     };
   } catch (err) {
-    console.error("Something went wrong:", err);
+    console.error('Something went wrong:', err);
   }
 };
