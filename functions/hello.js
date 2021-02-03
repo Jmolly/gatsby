@@ -30,7 +30,8 @@ const authorizeSheets = async () => {
   });
 };
 
-const addToCol = async (range, { date, email, skuCode, quantity }) => {
+const addToCol = async (range, params) => {
+  const { date, email, skuCode, quantity } = params;
   const sheets = await authorizeSheets();
 
   console.log(date, email, skuCode, quantity, 'params');
@@ -81,6 +82,8 @@ exports.handler = async function (event, context, callback) {
       skuCode: lineItem.skuCode,
       quantity: lineItem.quantity,
     }));
+
+    console.log(sheetsParams, 'sheetsParams');
 
     const sheetsRes = await addToCol('orders!F2', sheetsParams); // don't resolve though. Not going to fix if failure.
     return {
