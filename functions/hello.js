@@ -161,7 +161,7 @@ exports.handler = async function (event, context, callback) {
 
     const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
       addOrderToSpreadsheet(sheetsParam, 13 + i),
-    );
+    ).data;
 
     console.log(sheetsRes, 'sheetsRes');
 
