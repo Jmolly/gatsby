@@ -159,10 +159,11 @@ exports.handler = async function (event, context, callback) {
 
     console.log(range, 'range');
 
-    const sheetsRes = await sheetsParams
-      .map((sheetsParam, i) => addOrderToSpreadsheet(sheetsParam, 13 + i))
-      .then((res) => console.log(res.data, 'res.data'));
-
+    const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
+      addOrderToSpreadsheet(sheetsParam, 13 + i).then((res) =>
+        console.log(res.data, 'res.data'),
+      ),
+    );
     console.log(sheetsRes, 'sheetsRes');
 
     return {
