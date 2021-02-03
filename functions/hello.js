@@ -133,14 +133,6 @@ async function getLength() {
 
 exports.handler = async function (event, context, callback) {
   try {
-    const { data, included } = JSON.parse(event.body);
-
-    const {
-      attributes: { customer_email },
-    } = data;
-
-
-
     const params = {
       email: "test@gmail.com",
       date: "date",
