@@ -118,18 +118,18 @@ async function addOrderToSpreadsheet(params, range) {
   }
 }
 
-// async function getLength() {
-//   const sheets = await authorize();
+async function getLength() {
+  const sheets = await authorize();
 
-//   const length = await sheets.spreadsheets.values
-//     .get({
-//       spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
-//       range: `${'orders'}!A:A`,
-//     })
-//     .then((res) => res.data.values.length);
+  const length = await sheets.spreadsheets.values
+    .get({
+      spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
+      range: `${'orders'}!A:A`,
+    })
+    .then((res) => res.data.values.length);
 
-//   return length + 1;
-// }
+  return length + 1;
+}
 
 exports.handler = async function (event, context, callback) {
   try {
@@ -155,7 +155,9 @@ exports.handler = async function (event, context, callback) {
       quantity: lineItem.quantity,
     }));
 
-    // const range = await getLength();
+    const range = await getLength();
+
+    console.log(range, 'range');
 
     const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
       addOrderToSpreadsheet(sheetsParam, 13 + i),
