@@ -53,16 +53,19 @@ async function addOrderToSpreadsheet(params, range) {
 }
 
 async function getLength() {
-  const sheets = await authorize();
+  try {
+    const sheets = await authorize();
 
-  const length = await sheets.spreadsheets.values
-    .get({
+    const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
       range: `${'orders'}!A:A`,
-    })
-    .then((res) => res.data.values.length);
+    });
+    const length = response.data.values.length;
 
-  return length + 1;
+    return length + 1;
+  } catch (error) {
+    return error;
+  }
 }
 
 exports.handler = async function (event, context, callback) {
