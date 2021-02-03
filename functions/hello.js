@@ -71,13 +71,12 @@ const { config: dotenvConfig } = require('dotenv');
 
 dotenvConfig();
 
-const GOOGLE_SERVICE_ACCOUNT = process.env.GOOGLE_SERVICE_ACCOUNT;
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID;
 const GOOGLE_SHEET_LIST_NAME = process.env.GOOGLE_SHEET_LIST_NAME;
 
 const getClient = ({ scopes }) => {
   return google.auth.getClient({
-    credentials: JSON.parse(GOOGLE_SERVICE_ACCOUNT),
+    credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
     scopes: scopes,
   });
 };
@@ -105,18 +104,23 @@ async function addOrderToSpreadsheet(params, range) {
 
   console.log(
     {
-      request,
-      values: [[params.date, params.email, params.skuCode, params.quantity]],
+      ...request,
     },
     'request',
   );
 
   try {
     console.log('here');
-    const response = await sheets.spreadsheets.values.update(request);
+    const response = await sheets.spreadsheets.values.update(
+      request,
+      (err, res) => {
+        if (err) console.error('something is wrong: ', err);
+        console.log(res, 'res here');
+      },
+    );
     console.log(response, 'response');
   } catch (err) {
-    console.error(err);
+    console.error(err, 'some error here');
   }
 }
 
