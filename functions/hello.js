@@ -88,6 +88,8 @@ exports.handler = async function (event, context, callback) {
     const sheetsRes = sheetsParams.map(
       async (sheetsParam, i) => await addToCol(`orders!F${2 + i}`, sheetsParam),
     );
+
+    addToCol(`orders!F${2 + 1}`, sheetsParams[0]);
     // don't resolve though. Not going to fix if failure.
     return {
       statusCode: sheetsRes.status,
