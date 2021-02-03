@@ -96,13 +96,11 @@ exports.handler = async function (event, context, callback) {
 
     console.log(range, 'range');
 
-    const sheetsRes = sheetsParams.map(async (sheetsParam, i) => {
-      try {
-        await addOrderToSpreadsheet(sheetsParam, range + i);
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    const sheetsRes = await Promise.all(
+      sheetsParams.map((sheetsParam, i) =>
+        addOrderToSpreadsheet(sheetsParam, range + i),
+      ),
+    );
     console.log(sheetsRes, 'sheetsRes');
 
     return {
