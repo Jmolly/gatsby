@@ -30,7 +30,7 @@ const authorizeSheets = async () => {
   });
 };
 
-const addToCol = async (range, emailAddress) => {
+const addToCol = async (range, params) => {
   const sheets = await authorizeSheets();
 
   return new Promise((resolve, reject) => {
@@ -40,7 +40,9 @@ const addToCol = async (range, emailAddress) => {
         range,
         valueInputOption: 'USER_ENTERED',
         resource: {
-          values: [[emailAddress]],
+          values: [
+            [params.date, params.email, params.skuCode, params.quantity],
+          ],
         },
       },
       (err, response) => {
@@ -57,9 +59,31 @@ const addToCol = async (range, emailAddress) => {
 exports.handler = async function (event, context, callback) {
   try {
     // const emailToSignup = JSON.parse(event.body).email;
-    const emailToSignup = 'bakhar.yulia@gmail.com';
+    // const emailToSignup = 'bakhar.yulia@gmail.com';
 
-    const sheetsRes = await addToCol('orders!F2', emailToSignup); // don't resolve though. Not going to fix if failure.
+    const params = {
+      email: 'test@gmail.com',
+      date: 'date',
+      lineItems: [
+        {
+          skuCode: 'sku1',
+          quantity: 1,
+        },
+        {
+          skuCode: 'sku2',
+          quantity: 2,
+        },
+      ],
+    };
+
+    const sheetsParams = params.lineItems.map((lineItem) => ({
+      date: params.date,
+      email: params.email,
+      skuCode: lineItem.skuCode,
+      quantity: lineItem.quantity,
+    }));
+
+    const sheetsRes = await addToCol('orders!F2', sheetsParams); // don't resolve though. Not going to fix if failure.
     return {
       statusCode: sheetsRes.status,
       body: JSON.stringify(sheetsRes),
