@@ -111,7 +111,9 @@ async function addOrderToSpreadsheet(params, range) {
 
   try {
     console.log('here');
-    const response = await sheets.spreadsheets.values.update(request);
+    const response = await sheets.spreadsheets.values
+      .update(request)
+      .then((res) => console.log(res.data, 'res.data'));
     console.log(response, 'response');
   } catch (err) {
     console.error(err, 'some error here');
@@ -160,9 +162,7 @@ exports.handler = async function (event, context, callback) {
     console.log(range, 'range');
 
     const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
-      addOrderToSpreadsheet(sheetsParam, 13 + i).then((res) =>
-        console.log(res.data, 'res.data'),
-      ),
+      addOrderToSpreadsheet(sheetsParam, 13 + i),
     );
     console.log(sheetsRes, 'sheetsRes');
 
