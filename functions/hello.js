@@ -94,7 +94,7 @@ exports.handler = async function (event, context, callback) {
     });
 
     try {
-      await addToCol(`orders!F${2 + 1}`, sheetsParams[0]);
+      await addToCol(`orders!F${2 + 2}`, sheetsParams[0]);
     } catch (error) {
       console.log(error);
     }
