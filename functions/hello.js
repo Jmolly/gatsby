@@ -40,9 +40,7 @@ const addToCol = async (range, params) => {
         range,
         valueInputOption: 'USER_ENTERED',
         resource: {
-          values: [
-            [params.date, params.email, params.skuCode, params.quantity],
-          ],
+          values: [['1234']],
         },
       },
       (err, response) => {
