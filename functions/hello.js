@@ -33,6 +33,7 @@ const authorizeSheets = async () => {
 const addToCol = async (range, params) => {
   const sheets = await authorizeSheets();
 
+  console.log(params, 'params');
   return new Promise((resolve, reject) => {
     sheets.spreadsheets.values.append(
       {
