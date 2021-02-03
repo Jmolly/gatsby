@@ -71,8 +71,8 @@ const { config: dotenvConfig } = require('dotenv');
 
 dotenvConfig();
 
-const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID;
-const GOOGLE_SHEET_LIST_NAME = process.env.GOOGLE_SHEET_LIST_NAME;
+// const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID;
+// const GOOGLE_SHEET_LIST_NAME = process.env.GOOGLE_SHEET_LIST_NAME;
 
 const getClient = ({ scopes }) => {
   return google.auth.getClient({
@@ -95,7 +95,7 @@ async function addOrderToSpreadsheet(params, range) {
   const sheets = await authorize();
   const request = {
     spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
-    range: `${'orders'}!A${range}`,
+    range: `orders!A${range}`,
     valueInputOption: 'USER_ENTERED',
     resource: {
       values: [[params.date, params.email, params.skuCode, params.quantity]],
@@ -111,13 +111,7 @@ async function addOrderToSpreadsheet(params, range) {
 
   try {
     console.log('here');
-    const response = await sheets.spreadsheets.values.update(
-      request,
-      (err, res) => {
-        if (err) console.error('something is wrong: ', err);
-        console.log(res, 'res here');
-      },
-    );
+    const response = await sheets.spreadsheets.values.update(request);
     console.log(response, 'response');
   } catch (err) {
     console.error(err, 'some error here');
@@ -166,6 +160,8 @@ exports.handler = async function (event, context, callback) {
     const sheetsRes = await sheetsParams.map((sheetsParam, i) =>
       addOrderToSpreadsheet(sheetsParam, 13 + i),
     );
+
+    console.log(sheetsRes, 'sheetsRes');
 
     return {
       statusCode: 200,
