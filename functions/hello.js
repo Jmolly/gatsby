@@ -41,6 +41,7 @@ const addToCol = async (range, params) => {
         spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
         range,
         valueInputOption: 'USER_ENTERED',
+        insertDataOption: 'INSERT_ROWS',
         resource: {
           values: [[date, email, skuCode, quantity]],
         },
