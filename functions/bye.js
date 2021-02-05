@@ -29,6 +29,7 @@ async function addOrderToSpreadsheet(params, range) {
     spreadsheetId: '1M73-c45jziO-QQgLNOTC5JL-FseZFhSLOMBLTdan9XU',
     range: `orders!A${range}`,
     valueInputOption: 'USER_ENTERED',
+    insertDataOption: 'INSERT_ROWS',
     resource: {
       values: [[params.date, params.email, params.skuCode, params.quantity]],
     },
