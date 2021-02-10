@@ -9,13 +9,16 @@ const pageStyles = {
 
 // markup
 const IndexPage = () => {
-  function handleClick(e) {
+  const handleClick = async (e) => {
     e.preventDefault();
     console.log('click 1344');
-    fetch('https://jmolly.netlify.app/.netlify/functions/newsletter-signed-up')
-      .then((response) => response.json())
-      .then(console.log);
-  }
+    try {
+      const res = await fetch('/.netlify/functions/newsletter-signed-up');
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <main style={pageStyles}>
