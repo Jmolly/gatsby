@@ -10,7 +10,9 @@ const pageStyles = {
 // markup
 const IndexPage = () => {
   function handleClick(e) {
-    fetch('/.netlify/functions/newsletter-signed-up')
+    e.preventDefault();
+    console.log('click 1344');
+    fetch('https://jmolly.netlify.app/.netlify/functions/newsletter-signed-up')
       .then((response) => response.json())
       .then(console.log);
   }
