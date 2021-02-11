@@ -34,6 +34,9 @@ exports.handler = async function (event, context, callback) {
             'Content-Type': 'application/json',
             'api-key': SENDINBLUE_API_KEY,
           },
+          body: {
+            name: 'location',
+          },
         });
 
         console.log(list, 'list 2');
