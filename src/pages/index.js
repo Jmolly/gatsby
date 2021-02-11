@@ -13,7 +13,11 @@ const IndexPage = () => {
     e.preventDefault();
     console.log('click 1344');
     try {
-      const res = await fetch('/.netlify/functions/newsletter-signed-up');
+      const res = await fetch('/.netlify/functions/newsletter-signed-up', {
+        body: {
+          email: 'test123@gmail.com',
+        },
+      });
       console.log(res);
     } catch (err) {
       console.error(err);

@@ -4,7 +4,7 @@ const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 
 exports.handler = async function (event, context, callback) {
   try {
-    // console.log(event, 'event');
+    console.log(event, 'event');
     console.log('click');
 
     const lists = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
