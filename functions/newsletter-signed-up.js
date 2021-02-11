@@ -4,7 +4,7 @@ const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 
 exports.handler = async function (event, context, callback) {
   try {
-    console.log(event, 'event');
+    // console.log(event, 'event');
     console.log('click');
 
     const lists = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
@@ -24,17 +24,22 @@ exports.handler = async function (event, context, callback) {
       ? lists.lists.find((list) => list.name === location)
       : null;
 
+    console.log(list, 'list 1');
     if (!list) {
-      list = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': SENDINBLUE_API_KEY,
-        },
-      })
-        .then((res) => res.json())
-        .catch((err) => console.error('error:' + err));
+      try {
+        list = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'api-key': SENDINBLUE_API_KEY,
+          },
+        });
+
+        console.log(list, 'list 2');
+      } catch (err) {
+        console.error('error:' + err);
+      }
     }
 
     const listId = list.id;
