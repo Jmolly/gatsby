@@ -11,13 +11,13 @@ const pageStyles = {
 const IndexPage = () => {
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(e.target.value, 'value');
+    console.log(e.currentTargets, 'value');
     console.log('click 1344');
     try {
-      const res = await fetch('/.netlify/functions/newsletter-signed-up', {
-        email: 'test3@gmail.com',
-        location: 'by',
-      });
+      const res = await fetch(
+        '/.netlify/functions/newsletter-signed-up',
+        JSON.stringify({ email: 'test123', location: 'by' }),
+      );
       console.log(res);
     } catch (err) {
       console.error(err);
