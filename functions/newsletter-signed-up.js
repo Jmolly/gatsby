@@ -17,10 +17,10 @@ exports.handler = async function (event, context, callback) {
       .then((response) => response.json())
       .catch((err) => console.error('error:' + err));
 
-    console.log(lists, 'list');
+    console.log(lists, 'lists');
 
     const location = 'en';
-    let list = lists.find((list) => list.name === location);
+    let list = lists?.lists.find((list) => list.name === location);
 
     if (!list) {
       list = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
