@@ -11,9 +11,12 @@ const pageStyles = {
 const IndexPage = () => {
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(e.target.value, 'value');
     console.log('click 1344');
     try {
-      const res = await fetch('/.netlify/functions/newsletter-signed-up');
+      const res = await fetch('/.netlify/functions/newsletter-signed-up', {
+        queryStringParameters: { email: 'test3@gmail.com', location: 'by' },
+      });
       console.log(res);
     } catch (err) {
       console.error(err);
