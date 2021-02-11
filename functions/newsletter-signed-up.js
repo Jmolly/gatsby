@@ -1,3 +1,7 @@
+const fetch = require('node-fetch');
+
+const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
+
 exports.handler = async function (event, context, callback) {
   try {
     console.log(event, 'event');
