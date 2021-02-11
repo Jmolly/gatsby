@@ -19,7 +19,7 @@ exports.handler = async function (event, context, callback) {
 
     console.log(lists, 'lists');
 
-    const location = 'en';
+    const location = 'fr';
     let list = lists
       ? lists.lists.find((list) => list.name === location)
       : null;
@@ -54,9 +54,9 @@ exports.handler = async function (event, context, callback) {
         'api-key': SENDINBLUE_API_KEY,
       },
       body: JSON.stringify({
-        listIds: [{ listId }],
+        listIds: [listId],
         updateEnabled: false,
-        email: 'test@gmail.com',
+        email: 'test2@gmail.com',
       }),
     })
       .then((res) => res.json())
