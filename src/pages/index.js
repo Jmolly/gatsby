@@ -9,9 +9,11 @@ const pageStyles = {
 
 // markup
 const IndexPage = () => {
-  const handleClick = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.currentTargets, 'value');
+
+    console.log(e, 'datadofr');
+    console.log(e.target.value, 'value');
     console.log('click 1344');
     try {
       const res = await fetch(
@@ -25,13 +27,13 @@ const IndexPage = () => {
 
   return (
     <main style={pageStyles}>
-      <form onSubmit={handleClick}>
+      <form onSubmit={handleSubmit}>
         <p>
           Stay tuned in as we discover more of this mysterious world. New
           products and stories every week.
         </p>
-        <input />
-        <button>sign me up</button>
+        <input type="email" name="email" />
+        <button type="submit">sign me up</button>
       </form>
     </main>
   );

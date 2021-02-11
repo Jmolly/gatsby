@@ -27,7 +27,7 @@ exports.handler = async function (event, context, callback) {
 
     console.log(list, 'list 1');
     if (!list) {
-      list = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
+      await fetch('https://api.sendinblue.com/v3/contacts/lists', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -37,7 +37,7 @@ exports.handler = async function (event, context, callback) {
         body: JSON.stringify({ name: location, folderId: 7 }),
       })
         .then((res) => res.json())
-        .then((json) => console.log(json))
+        .then((json) => (list = json))
         .catch((err) => console.error('error:' + err));
 
       console.log(list, 'list 2');
