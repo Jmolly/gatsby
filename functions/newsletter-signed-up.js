@@ -20,7 +20,7 @@ exports.handler = async function (event, context, callback) {
 
     console.log(lists, 'lists');
 
-    const location = 'fr';
+    const location = 'by';
     let list = lists
       ? lists.lists.find((list) => list.name === location)
       : null;
