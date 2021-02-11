@@ -20,25 +20,43 @@ exports.handler = async function (event, context, callback) {
 
     console.log(lists, 'lists');
 
-    const location = 'by';
+    const location = 'pl';
     let list = lists
       ? lists.lists.find((list) => list.name === location)
       : null;
 
     console.log(list, 'list 1');
     if (!list) {
-      await fetch('https://api.sendinblue.com/v3/contacts/lists', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': SENDINBLUE_API_KEY,
-        },
-        body: JSON.stringify({ name: location, folderId: 7 }),
-      })
-        .then((res) => res.json())
-        .then((json) => (list = json))
-        .catch((err) => console.error('error:' + err));
+      try {
+        const response = await fetch(
+          'https://api.sendinblue.com/v3/contacts/lists',
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'api-key': SENDINBLUE_API_KEY,
+            },
+            body: JSON.stringify({ name: location, folderId: 7 }),
+          },
+        );
+        list = await response.json();
+      } catch (error) {
+        console.log(error);
+      }
+
+      // await fetch('https://api.sendinblue.com/v3/contacts/lists', {
+      //   method: 'POST',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //     'api-key': SENDINBLUE_API_KEY,
+      //   },
+      //   body: JSON.stringify({ name: location, folderId: 7 }),
+      // })
+      //   .then((res) => res.json())
+      //   .then((json) => (list = json))
+      //   .catch((err) => console.error('error:' + err));
 
       console.log(list, 'list 2');
     }
