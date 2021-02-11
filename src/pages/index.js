@@ -15,7 +15,7 @@ const IndexPage = () => {
     console.log('click 1344');
     try {
       const res = await fetch('/.netlify/functions/newsletter-signed-up', {
-        queryStringParameters: { email: 'test3@gmail.com', location: 'by' },
+        body: { email: 'test3@gmail.com', location: 'by' },
       });
       console.log(res);
     } catch (err) {

@@ -4,6 +4,7 @@ const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 
 exports.handler = async function (event, context, callback) {
   try {
+    console.log(context, 'context');
     console.log(event, 'event');
     console.log('click');
 
