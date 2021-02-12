@@ -19,7 +19,7 @@ exports.handler = async function (event, context, callback) {
         },
       });
       console.log(response, 'lists response');
-      lists = await response.json();
+      lists = await Promise.resolve(response);
     } catch (error) {
       console.error(error);
     }
