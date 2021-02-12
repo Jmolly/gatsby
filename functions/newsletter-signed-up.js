@@ -1,28 +1,27 @@
 const fetch = require('node-fetch');
 
+const { config: dotenvConfig } = require('dotenv');
+
+dotenvConfig();
+
 const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 const SENDINBLUE_FOLDER_ID = process.env.SENDINBLUE_FOLDER_ID;
 
 exports.handler = async function (event, context, callback) {
   try {
     const { email, locale } = event.queryStringParameters;
-    let lists = null;
 
     console.log({ email, locale });
 
-    try {
-      const response = fetch('https://api.sendinblue.com/v3/contacts/lists', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': SENDINBLUE_API_KEY,
-        },
-      });
-      console.log(response, 'lists response');
-      lists = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
+    const lists = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': SENDINBLUE_API_KEY,
+      },
+    })
+      .then((response) => response.json())
+      .catch((err) => console.error('error:' + err));
 
     console.log(lists, 'lists');
 
