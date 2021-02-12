@@ -26,7 +26,7 @@ exports.handler = async function (event, context, callback) {
     console.log(lists, 'lists');
 
     let list = lists ? lists.lists.find((list) => list.name === locale) : null;
-    console.log(SENDINBLUE_FOLDER_ID, 'SENDINBLUE_FOLDER_ID');
+    console.log(typeof SENDINBLUE_FOLDER_ID, 'SENDINBLUE_FOLDER_ID');
 
     if (!list) {
       try {
