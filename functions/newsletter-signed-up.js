@@ -1,9 +1,5 @@
 const fetch = require('node-fetch');
 
-const { config: dotenvConfig } = require('dotenv');
-
-dotenvConfig();
-
 const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 const SENDINBLUE_FOLDER_ID = process.env.SENDINBLUE_FOLDER_ID;
 
@@ -41,7 +37,7 @@ exports.handler = async function (event, context, callback) {
             },
             body: JSON.stringify({
               name: locale,
-              folderId: 7,
+              folderId: +SENDINBLUE_FOLDER_ID,
             }),
           },
         );
