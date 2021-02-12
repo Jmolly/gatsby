@@ -52,25 +52,23 @@ exports.handler = async function (event, context, callback) {
 
     console.log(listId, 'listId');
 
-    try {
-      const contact = await fetch('https://api.sendinblue.com/v3/contacts', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': SENDINBLUE_API_KEY,
-        },
-        body: JSON.stringify({
-          listIds: [listId],
-          updateEnabled: false,
-          email: email,
-        }),
-      });
+    const contact = await fetch('https://api.sendinblue.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'api-key': SENDINBLUE_API_KEY,
+      },
+      body: JSON.stringify({
+        listIds: [listId],
+        updateEnabled: false,
+        email: 'test2@gmail.com',
+      }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.error('error:' + err));
 
-      console.log(contact, 'contact');
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(contact, 'contact');
 
     return {
       statusCode: 200,
