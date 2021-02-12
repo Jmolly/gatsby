@@ -17,7 +17,7 @@ const IndexPage = () => {
     console.log('click 1344');
     try {
       const res = await fetch(
-        `/.netlify/functions/newsletter-signed-up?email=${'test123'}&location=${'by'}`,
+        `/.netlify/functions/newsletter-signed-up?email=${'test123'}&locale=${'by'}`,
       );
       console.log(res);
     } catch (err) {
