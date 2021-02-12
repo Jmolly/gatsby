@@ -19,7 +19,7 @@ exports.handler = async function (event, context, callback) {
         },
       });
       console.log(response, 'lists response');
-      lists = await Promise.resolve(response).json();
+      lists = await response.json();
     } catch (error) {
       console.error(error);
     }
@@ -27,6 +27,7 @@ exports.handler = async function (event, context, callback) {
     console.log(lists, 'lists');
 
     let list = lists ? lists.lists.find((list) => list.name === locale) : null;
+    console.log(SENDINBLUE_FOLDER_ID, 'SENDINBLUE_FOLDER_ID');
 
     if (!list) {
       try {
