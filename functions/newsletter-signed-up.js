@@ -41,7 +41,7 @@ exports.handler = async function (event, context, callback) {
             },
             body: JSON.stringify({
               name: locale,
-              folderId: SENDINBLUE_FOLDER_ID,
+              folderId: 7,
             }),
           },
         );
