@@ -89,10 +89,12 @@ exports.handler = async function (event, context, callback) {
       },
       body: JSON.stringify({
         templateId: 2,
-        to: [{ email: 'bakhar.yulia@gmail.com' }],
+        to: [{ email: 'yulka.bahar@gmail.com' }],
         params: emailParams,
       }),
     }).then((response) => response.json());
+
+    console.log(response, 'response');
 
     return {
       statusCode: 200,
