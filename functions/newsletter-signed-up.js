@@ -88,7 +88,7 @@ exports.handler = async function (event, context, callback) {
         'api-key': SENDINBLUE_API_KEY,
       },
       body: JSON.stringify({
-        templateId: 4,
+        templateId: 2,
         to: [{ email: 'bakhar.yulia@gmail.com' }],
         params: emailParams,
       }),
