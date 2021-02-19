@@ -84,6 +84,7 @@ exports.handler = async function (event, context, callback) {
     const response = await fetch('https://api.sendinblue.com/v3/smtp/email', {
       method: 'POST',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
         'api-key': SENDINBLUE_API_KEY,
       },
