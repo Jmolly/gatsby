@@ -70,6 +70,30 @@ exports.handler = async function (event, context, callback) {
 
     console.log(contact, 'contact');
 
+    const emailParams = {
+      order: {
+        id: 1,
+        number: 555,
+        placedAt: '19/02/2021',
+        total: '80',
+        languageCode: 'en',
+        country: 'en',
+      },
+    };
+
+    const response = await fetch('https://api.sendinblue.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': SENDINBLUE_API_KEY,
+      },
+      body: JSON.stringify({
+        templateId: 4,
+        to: [{ email: 'bakhar.yulia@gmail.com' }],
+        params: emailParams,
+      }),
+    }).then((response) => response.json());
+
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'Success' }),
