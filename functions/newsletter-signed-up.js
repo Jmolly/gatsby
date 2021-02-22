@@ -7,68 +7,68 @@ exports.handler = async function (event, context, callback) {
   try {
     const { email, locale } = event.queryStringParameters;
 
-    console.log({ email, locale });
+    // console.log({ email, locale });
 
-    const lists = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': SENDINBLUE_API_KEY,
-      },
-    })
-      .then((response) => response.json())
-      .catch((err) => console.error('error:' + err));
+    // const lists = await fetch('https://api.sendinblue.com/v3/contacts/lists', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'api-key': SENDINBLUE_API_KEY,
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .catch((err) => console.error('error:' + err));
 
-    console.log(lists, 'lists');
+    // console.log(lists, 'lists');
 
-    let list = lists ? lists.lists.find((list) => list.name === locale) : null;
-    console.log(typeof SENDINBLUE_FOLDER_ID, 'SENDINBLUE_FOLDER_ID');
+    // let list = lists ? lists.lists.find((list) => list.name === locale) : null;
+    // console.log(typeof SENDINBLUE_FOLDER_ID, 'SENDINBLUE_FOLDER_ID');
 
-    if (!list) {
-      try {
-        const response = await fetch(
-          'https://api.sendinblue.com/v3/contacts/lists',
-          {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'api-key': SENDINBLUE_API_KEY,
-            },
-            body: JSON.stringify({
-              name: locale,
-              folderId: +SENDINBLUE_FOLDER_ID,
-            }),
-          },
-        );
-        list = await response.json();
-        console.log({ response, list }, 'in create list');
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    // if (!list) {
+    //   try {
+    //     const response = await fetch(
+    //       'https://api.sendinblue.com/v3/contacts/lists',
+    //       {
+    //         method: 'POST',
+    //         headers: {
+    //           Accept: 'application/json',
+    //           'Content-Type': 'application/json',
+    //           'api-key': SENDINBLUE_API_KEY,
+    //         },
+    //         body: JSON.stringify({
+    //           name: locale,
+    //           folderId: +SENDINBLUE_FOLDER_ID,
+    //         }),
+    //       },
+    //     );
+    //     list = await response.json();
+    //     console.log({ response, list }, 'in create list');
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
 
-    const listId = list.id;
+    // const listId = list.id;
 
-    console.log(listId, 'listId');
+    // console.log(listId, 'listId');
 
-    const contact = await fetch('https://api.sendinblue.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'api-key': SENDINBLUE_API_KEY,
-      },
-      body: JSON.stringify({
-        listIds: [listId],
-        updateEnabled: false,
-        email: 'test2@gmail.com',
-      }),
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error('error:' + err));
+    // const contact = await fetch('https://api.sendinblue.com/v3/contacts', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'api-key': SENDINBLUE_API_KEY,
+    //   },
+    //   body: JSON.stringify({
+    //     listIds: [listId],
+    //     updateEnabled: false,
+    //     email: 'test2@gmail.com',
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .catch((err) => console.error('error:' + err));
 
-    console.log(contact, 'contact');
+    // console.log(contact, 'contact');
 
     const emailParams = {
       order: {
@@ -90,7 +90,7 @@ exports.handler = async function (event, context, callback) {
       },
       body: JSON.stringify({
         templateId: 2,
-        to: [{ email: 'yulka.bahar@gmail.com' }],
+        to: [{ email: 'bakhar.yulia@gmail.com' }],
         params: emailParams,
       }),
     }).then((response) => response.json());
