@@ -79,6 +79,41 @@ exports.handler = async function (event, context, callback) {
         languageCode: 'en',
         country: 'en',
       },
+
+      shippingAddress: {
+        firstName: 'Yulia',
+        lastName: 'Bakhar',
+        line1: '60 Rue Charlot',
+        country: 'France',
+        zipCode: '2300001',
+        city: 'Paris',
+        phone: '+375255400703',
+        stateCode: '1111',
+        intercom: '1',
+        floor: '2',
+        houseNumber: '3',
+        note: 'note',
+      },
+      lineItems: [
+        {
+          id: 301,
+          name: 'tropical old tom',
+          price: '€35,00',
+          quantity: 1,
+          total: '€35,00',
+          imageUrl: '',
+          skuCode: '301',
+        },
+        {
+          id: 302,
+          name: 'HIGHLAND JOURNEY',
+          price: '€55,00',
+          quantity: 2,
+          total: '€110,00',
+          imageUrl: '',
+          skuCode: '302',
+        },
+      ],
     };
 
     const response = await fetch('https://api.sendinblue.com/v3/smtp/email', {
