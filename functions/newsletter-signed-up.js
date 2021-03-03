@@ -101,7 +101,8 @@ exports.handler = async function (event, context, callback) {
           price: '€35,00',
           quantity: 1,
           total: '€35,00',
-          imageUrl: '',
+          imageUrl:
+            'https://www.datocms-assets.com/30257/1610759194-packshot-hunter-laing-highland-journey.png?auto=format',
           skuCode: '301',
         },
         {
@@ -110,7 +111,8 @@ exports.handler = async function (event, context, callback) {
           price: '€55,00',
           quantity: 2,
           total: '€110,00',
-          imageUrl: '',
+          imageUrl:
+            'https://www.datocms-assets.com/30257/1610759194-packshot-hunter-laing-highland-journey.png?auto=format',
           skuCode: '302',
         },
       ],
