@@ -75,7 +75,7 @@ exports.handler = async function (event, context, callback) {
 
     return {
         statusCode: 201,
-        challenge: event.queryStringParameters.challenge;
+        body: event.queryStringParameters.challenge;
     }
     
     // event.queryStringParameters.challenge;
