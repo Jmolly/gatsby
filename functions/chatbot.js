@@ -74,10 +74,10 @@ exports.handler = async function (event, context, callback) {
     // console.log(userLetter, "userLetter");
 
     return {
-        statusCode: 201,
-        body: event.queryStringParameters.challenge;
-    }
-    
+      statusCode: 201,
+      body: event.queryStringParameters.challenge,
+    };
+
     // event.queryStringParameters.challenge;
   } catch (err) {
     console.error('Something went wrong:', err);
