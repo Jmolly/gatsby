@@ -73,7 +73,12 @@ exports.handler = async function (event, context, callback) {
 
     // console.log(userLetter, "userLetter");
 
-    return event.queryStringParameters.challenge;
+    return {
+        status: 201,
+        challenge: event.queryStringParameters.challenge;
+    }
+    
+    // event.queryStringParameters.challenge;
   } catch (err) {
     console.error('Something went wrong:', err);
   }
