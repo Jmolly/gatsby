@@ -74,7 +74,7 @@ exports.handler = async function (event, context, callback) {
     // console.log(userLetter, "userLetter");
 
     return {
-        status: 201,
+        statusCode: 201,
         challenge: event.queryStringParameters.challenge;
     }
     
