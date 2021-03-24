@@ -15,18 +15,13 @@ exports.handler = async function (event, context, callback) {
     }
     console.log(event, 'event');
 
-    const { body } = event ? JSON.parse(event) : { body: {} };
-
-    console.log(body);
-
-    const attributes = body
-      ? body
+    const { attributes } = event.body
+      ? JSON.parse(event.body)
       : {
-          default_email: '',
-          default_name: '',
-          country: '',
-          MessageToLexir: '',
+          attributes: {},
         };
+
+    console.log(event.body && JSON.parse(event.body), 'here');
 
     console.log(attributes, 'attributes');
 
