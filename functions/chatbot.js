@@ -13,7 +13,7 @@ exports.handler = async function (event, context, callback) {
         statusCode: 401,
       };
     }
-    console.log(event.body, 'body');
+    console.log(event, 'event');
 
     const { body } = event ? JSON.parse(event) : { body: {} };
 
