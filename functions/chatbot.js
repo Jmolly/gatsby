@@ -13,15 +13,22 @@ exports.handler = async function (event, context, callback) {
         statusCode: 401,
       };
     }
+    console.log(event.body, 'body');
 
-    const attributes = event.body
-      ? JSON.parse(event.body.attributes)
+    const { body } = event ? JSON.parse(event) : { body: {} };
+
+    console.log(body);
+
+    const attributes = body
+      ? body
       : {
           default_email: '',
           default_name: '',
           country: '',
           MessageToLexir: '',
         };
+
+    console.log(attributes, 'attributes');
 
     const params = {
       email: attributes && attributes.default_email,
