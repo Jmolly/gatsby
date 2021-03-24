@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 
-const token = 'znjZAMJK0WeQVmzONQJO';
+const token = 'CD64IfGW36vq4E7YERkg';
 const USER_EMAIL_TEMPLATE = 19;
 const LEXIR_EMAIL_TEMPLATE = 18;
 
@@ -27,11 +27,12 @@ exports.handler = async function (event, context, callback) {
       email: attributes && attributes.default_email,
       name: attributes && attributes.default_name,
       message: attributes && attributes.MessageToLexir,
-      messageType: 'General message',
+      messageType: 'Problem with order',
       content: [
-        `Thanks for reaching out to Lexir. We have received your message and will get back to you as soon as possible!`,
+        'Thank you for contacting Lexir.',
+        'We have received your support request regarding a problem with order. We will get back to you as soon as possible.',
       ],
-      ending: 'Cheers!',
+      ending: 'Regards,',
     };
 
     const { sender } = await fetch(
