@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 const SENDINBLUE_API_KEY = process.env.SENDINBLUE_API_KEY;
 
 const token = 'CD64IfGW36vq4E7YERkg';
-const USER_EMAIL_TEMPLATE = 19;
-const LEXIR_EMAIL_TEMPLATE = 18;
+const USER_EMAIL_TEMPLATE = 3;
+const LEXIR_EMAIL_TEMPLATE = 4;
 
 exports.handler = async function (event, context, callback) {
   try {
