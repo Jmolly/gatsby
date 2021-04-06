@@ -136,7 +136,10 @@ exports.handler = async function (event, context, callback) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Success' }),
+      body: JSON.stringify({
+        message: 'Already exists',
+        isUserSubscribed: true,
+      }),
     };
   } catch (err) {
     console.error('Something went wrong:', err);
