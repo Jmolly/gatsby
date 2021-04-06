@@ -18,7 +18,7 @@ const IndexPage = () => {
     try {
       const res = await fetch(
         `/.netlify/functions/newsletter-signed-up?email=${'test123'}&locale=${'by'}`,
-      );
+      ).then((res) => res.json());
       console.log(res);
     } catch (err) {
       console.error(err);

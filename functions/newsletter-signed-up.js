@@ -135,7 +135,7 @@ exports.handler = async function (event, context, callback) {
     console.log(response, 'response');
 
     return {
-      statusCode: 200,
+      statusCode: 201,
       body: JSON.stringify({
         message: 'Already exists',
         isUserSubscribed: true,
