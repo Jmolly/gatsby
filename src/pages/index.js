@@ -16,10 +16,13 @@ const IndexPage = () => {
     console.log(e.target.value, 'value');
     console.log('click 1344');
     try {
-      const res = await fetch(
+      const res = fetch(
         `/.netlify/functions/newsletter-signed-up?email=${'test123'}&locale=${'by'}`,
       ).then((res) => res.json());
+
       console.log(res);
+
+      console.log(res.body, 'body');
     } catch (err) {
       console.error(err);
     }
